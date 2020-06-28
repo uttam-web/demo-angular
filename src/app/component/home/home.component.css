@@ -1,0 +1,12 @@
+.btncls button{
+    height: 14%;
+    width: 100%;
+    margin: 10px 10px 10px 10px;
+    padding: 5px 10px 10px 10px;
+    display: block;
+}
+
+.lazycls button{ 
+    margin: 10px 10px 10px 10px;
+    padding: 5px 10px 10px 10px; 
+}
