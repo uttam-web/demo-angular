@@ -7,6 +7,13 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
+} else {
+  if(window){
+    // window.console.log = function(){};
+    // window.console.warn = function(){}
+    // window.console.error = function(){}
+
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

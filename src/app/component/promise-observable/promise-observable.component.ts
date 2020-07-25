@@ -19,8 +19,6 @@ export class PromiseObservableComponent implements OnInit, OnDestroy {
 
   constructor(public meta: Metaservice,private myservice: MyserviceService) { 
 
-
-
   }
 
   ngOnInit() {
@@ -33,7 +31,7 @@ export class PromiseObservableComponent implements OnInit, OnDestroy {
     this.meta.setmeta(data);
 
 
-    this.myservice.getrandomnumber().pipe(takeUntil(this.unsubscribe)).subscribe((rand: number) => {
+    this.myservice.getrandomnumber().pipe(take(5)).subscribe((rand: number) => {
       const lastexecutedtime: number = Date.now();
       const p = 9;
       this.randomnumber.push({
@@ -45,6 +43,8 @@ export class PromiseObservableComponent implements OnInit, OnDestroy {
       this.lastexecutedtime = lastexecutedtime;
       console.log(`Rceived  random number with observable  ${rand} service id : ${this.servicecallcount} `);
     });
+
+    console.log(this.randomnumber,'randomnumber')
 
 
     new Promise((resolve, reject) => {  
@@ -66,6 +66,11 @@ export class PromiseObservableComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.unsubscribe.next(true);
+    this.unsubscribe.complete();
+  }
+
+  unsubscriberand(){
     this.unsubscribe.next(true);
     this.unsubscribe.complete();
   }
